@@ -1,0 +1,19 @@
+# Builds and dependencies
+bin/
+obj/
+dist/
+build/
+node_modules/
+# Local game dependencies and personal data
+Libs/
+gamefiles/
+saves/
+logs/
+*.log
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+*.user
+*.suo
+.vs/
