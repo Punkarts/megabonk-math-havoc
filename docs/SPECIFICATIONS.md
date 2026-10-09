@@ -9,26 +9,32 @@ Version de cadrage — 9 octobre 2026.
 5. L'expiration du compte à rebours termine sans pénalité et ajoute un gain proportionnel au nombre de bonnes réponses.
 6. Le résultat est appliqué une seule fois avant le retour à Megabonk.
 
-## Interprétation proposée, à confirmer avant implémentation
-Le mot « permanent » ne précise pas si le bonus survit à la mort, à une nouvelle partie ou au redémarrage. Proposition initiale : bonus conservé pendant toute la partie Megabonk, réinitialisé à la suivante. Une persistance entre parties reste une décision ouverte.
+## Choix validés le 9 octobre 2026
+- Développement local, Megabonk reste le jeu principal.
+- Bonus limité aux dégâts.
+- Multiplicateur initial ×1, remis à ×1 à chaque nouvelle partie, aucune persistance entre parties.
+- Session de 10 secondes.
+- Gain de +0,01 par bonne réponse.
+- Sur erreur : ajouter les gains de cette session puis diviser le total par deux, soit (M précédent + n × 0,01) / 2.
+- Expiration sans erreur : M précédent + n × 0,01.
+Ces choix remplacent les hypothèses historiques de la section suivante.
 
-Pour le cadrage, utiliser un multiplicateur global M appliqué aux seules statistiques explicitement compatibles. Valeur initiale : M = 1. Chaque bonne réponse vaut un incrément configurable g, illustré par g = 0,05. Aucun montant n'a été imposé par l'utilisateur.
+## Interprétation actualisée
+Le bonus dure toute la partie Megabonk, puis est réinitialisé à la suivante. M = 1 au départ et g = 0,01.
 
-Pendant la session, afficher un gain provisoire n × g, sans modifier Megabonk. À la clôture :
-- Temps écoulé : M suivant = M précédent + n × g.
-- Réponse incorrecte : M suivant = M précédent / 2 ; le gain provisoire de cette session est perdu.
-- Annulation, crash ou panne de communication : M inchangé ; aucune pénalité technique.
+Pendant la session, compter les bonnes réponses et afficher le total provisoire. À la clôture :
+- Temps écoulé : M suivant = M précédent + n × 0,01.
+- Réponse incorrecte : M suivant = (M précédent + n × 0,01) / 2.
+- Annulation ou panne technique : M inchangé.
 
-La perte des gains provisoires sur erreur est une proposition : l'autre interprétation possible est (M précédent + n × g) / 2. Le choix doit être fixé avant de coder. La division concerne ici le multiplicateur total, pas seulement son surplus au-dessus de 1. Aucun plancher à 1 n'est ajouté : M peut devenir inférieur à 1.
+Aucun plancher à 1 : le multiplicateur peut devenir inférieur à 1.
 
-| M avant | Bonnes réponses | Fin | M après avec g = 0,05 |
+| M avant | Bonnes réponses | Fin | M après |
 | --- | --- | --- | --- |
-| 1 | 10 | Temps écoulé | 1,50 |
-| 1,50 | 4 | Réponse incorrecte | 0,75 |
-| 0,75 | 5 | Temps écoulé | 1 |
+| 1 | 10 | Temps écoulé | 1,10 |
+| 1 | 10 | Réponse incorrecte | 0,55 |
 | 1 | 0 | Temps écoulé | 1 |
 | 1 | 0 | Réponse incorrecte | 0,50 |
-| 1,50 | 4 | Panne technique | 1,50 |
 
 ## Déclencheurs
 Les événements doivent provenir de l'état du jeu, pas d'une reconnaissance visuelle.
@@ -43,12 +49,12 @@ Proposition d'ordre : laisser se terminer l'attribution de la récompense et le 
 
 ## Session et temps
 Utiliser le véritable mode Havoc. Ne pas remplacer Math-Havoc par un quiz maison sans une nouvelle décision.
-Durée configurable, valeur non fixée. Vérifier le chronomètre natif : s'il s'agit d'un temps par question plutôt que par session, documenter l'adaptation nécessaire. L'horloge de la session continue indépendamment de la pause de Megabonk et démarre lorsque Math-Havoc confirme qu'il est prêt.
+Durée retenue : 10 secondes. Vérifier le chronomètre natif : s'il s'agit d'un temps par question plutôt que par session, documenter l'adaptation nécessaire. L'horloge de la session continue indépendamment de la pause de Megabonk et démarre lorsque Math-Havoc confirme qu'il est prêt.
 Une réponse n'est comptée que si elle est validée avant l'échéance. À l'échéance exacte, le temps écoulé prime ; un événement tardif ne provoque aucun malus.
 La fermeture normale de session et l'expiration ont une raison distincte de la réponse incorrecte.
 
 ## Application des bonus
-Définir une liste de statistiques positives à multiplier après inspection : dégâts, vitesse, etc. sont seulement des candidats. Ne pas multiplier indistinctement les temps de recharge, effets booléens ou statistiques plafonnées.
+Statistique retenue : dégâts uniquement. Identifier la valeur et le point de recalcul réels après inspection. Ne pas multiplier indistinctement les temps de recharge, effets booléens ou statistiques plafonnées.
 Calculer depuis la valeur de référence et le M courant, jamais depuis la valeur déjà multipliée. Tout objet acquis ultérieurement doit être recalculé avec M, sans cumuler deux fois le même effet.
 Préciser les interactions avec bonus additifs, sauvegarde/chargement et autres mods.
 
@@ -63,4 +69,4 @@ Préciser les interactions avec bonus additifs, sauvegarde/chargement et autres 
 - Nouvelle partie : appliquer la politique de persistance choisie.
 
 ## Décisions ouvertes
-Portée de « permanent », valeur de g, durée, traitement des bonnes réponses précédant une erreur, multiplicateur global ou plusieurs catégories, statistiques affectées, liste des bonus déclencheurs et regroupement des acquisitions. Les propositions ci-dessus ne valent pas validation utilisateur.
+Restent à préciser : liste des bonus déclencheurs et regroupement des acquisitions. Les choix validés plus haut font autorité ; les détails techniques restent à vérifier.

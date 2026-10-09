@@ -2,7 +2,7 @@
 Plan de validation seulement : aucun test exécuté ni suite automatisée créée.
 
 ## Logique isolée
-Vérifier les exemples chiffrés de [SPECIFICATIONS.md](../docs/SPECIFICATIONS.md), zéro bonne réponse, plusieurs erreurs successives, M inférieur à 1 et absence de malus technique. Tester la formule retenue après validation des décisions ouvertes.
+Vérifier les exemples chiffrés de [SPECIFICATIONS.md](../docs/SPECIFICATIONS.md), zéro bonne réponse, plusieurs erreurs successives, M inférieur à 1 et absence de malus technique. Formule validée : (M + n × 0,01) / 2 sur erreur. Durée : 10 secondes ; dégâts uniquement ; remise à ×1 à chaque nouvelle partie.
 
 ## Protocole
 Simuler doublons, résultat périmé, réponses désordonnées, expiration simultanée à une réponse, timeout de préparation et crash pendant l'application. Chaque résultat doit être crédité exactement une fois.

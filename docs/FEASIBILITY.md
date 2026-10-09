@@ -66,3 +66,7 @@ Sources primaires consultées le 9 octobre 2026 ; les exemples de mods viennent 
 - [S6 — Universal Modder, dépôt de l'auteur](https://github.com/rehan-remade/universal-modder)
 
 Ne versionner ni fichiers propriétaires des jeux, ni sauvegardes personnelles, ni secrets. Les tests de compatibilité doivent être faits sur des copies légitimes avec sauvegarde préalable. Aucune publication Melty effectuée.
+
+## Mise à jour après connexion à Melty
+Le 9 octobre 2026, search_games et game_info ont retourné custom-megabonk et custom-math-havoc, tous deux hors catalogue, utilisables comme companions mais pas comme hôtes catalogués. Aucun loader automatique renseigné. Le parcours demandé avec Megabonk comme hôte n'est donc pas publiable selon ces réponses actuelles. La recherche de mashups a trouvé des projets avec Megabonk comme compagnon, pas cette combinaison.
+L'utilisateur a choisi de conserver le concept et de développer un mod local. Aucune publication ni listing créés.

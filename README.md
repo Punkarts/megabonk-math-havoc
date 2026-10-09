@@ -2,7 +2,7 @@
 Projet de mashup destiné à Melty : interrompre temporairement Megabonk pour jouer une session du véritable Math-Havoc en mode Havoc, puis traduire les réponses en bonus durables.
 
 ## État
-Cadrage documentaire au 9 octobre 2026. Aucun mod implémenté, aucune compilation ni session de jeu testée. Aucun accès aux installations Windows des jeux dans cet environnement. La faisabilité complète reste conditionnelle, surtout pour Math-Havoc.
+Début de développement au 9 octobre 2026 : calcul pur en C# ajouté, sans adaptateurs de jeux. Aucune compilation ni session de jeu testée. Aucun accès aux installations Windows des jeux dans cet environnement. La faisabilité complète reste conditionnelle, surtout pour Math-Havoc.
 
 ## Boucle de jeu
 - Obtenir un objet, un bonus ou un niveau déclenche une session mathématique.
@@ -26,3 +26,7 @@ Les formules et choix provisoires sont détaillés dans les [spécifications](do
 Sur Windows, relever les versions et moteurs réels, récupérer les instructions de création fournies par Melty, puis prouver séparément la pause de Megabonk et la lecture des réponses de Math-Havoc. Ne choisir les dépendances et ne développer le prototype qu'après ces vérifications.
 
 Le dépôt contient uniquement les documents du projet ; aucun binaire, ressource, sauvegarde ou jeton des jeux. La préparation sur GitHub ne rend pas les installations locales accessibles à Codex.
+
+## Configuration validée
+10 secondes par session, +0,01 par bonne réponse, dégâts uniquement. Une erreur divise le total, gains de la session inclus, par deux. Retour à ×1 à chaque nouvelle partie.
+Développement local choisi : les réponses actuelles de Melty ne permettent pas Megabonk comme hôte de catalogue.

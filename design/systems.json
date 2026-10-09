@@ -1,0 +1,18 @@
+{
+  "schemaVersion": 1,
+  "systems": [
+    {
+      "id": "damage_bonus",
+      "initialMultiplier": 1,
+      "gainPerCorrectAnswer": 0.01,
+      "durationSeconds": 10,
+      "wrongAnswerRule": "halve_total_including_session_gain",
+      "expiryRule": "add_session_gain",
+      "technicalFailureRule": "keep_previous",
+      "persistence": "current_run",
+      "targetStat": "damage",
+      "implementation": "src/core/BonusRules.cs",
+      "gameIntegrationVerified": false
+    }
+  ]
+}
